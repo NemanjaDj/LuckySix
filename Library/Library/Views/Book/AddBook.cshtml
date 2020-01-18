@@ -1,0 +1,79 @@
+﻿@model Library.Models.WritersAndGenres
+@{
+    ViewData["Title"] = "AddBook";
+}
+
+    <div>
+        <h2>Insert new book</h2>
+
+
+        <div class="form-group">
+            @using (Html.BeginForm())
+            {
+            <table id="addBook">
+                <tr>
+                    <td>@Html.LabelFor(m => m.Book.BookName)</td>
+                    <td>@Html.TextBoxFor(m => m.Book.BookName, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(m => m.Book.BookName , "", new { @class = "text-danger" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Book.PageNumber)</td>
+                    <td>@Html.TextBoxFor(m => m.Book.PageNumber, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Book.BookPrice)</td>
+                    <td>@Html.TextBoxFor(m => m.Book.BookPrice, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(m => m.Book.BookPrice, "", new { @class = "text-danger" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Book.Description)</td>
+                    <td>@Html.TextBoxFor(m => m.Book.Description, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(m => m.Book.Description, "", new { @class = "text-danger" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Genres)</td>
+                    <td>
+                        <ul name="genres" class="list-group">
+                            @foreach (var item in Model.Genres)
+                            {
+                            <li>@item.GenreName <input type="checkbox" name="bookGenre" value="@item.GenreName" class="form-check-input" /></li>
+                            }
+                            
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Writer)</td>
+                    <td>
+                        <select name="writerId" class="form-control">
+                            @foreach (var item in Model.Writer)
+                            {
+                                <option>@item.WriterName</option>
+                            }
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Book.ReleaseYear)</td>
+                    <td>@Html.TextBoxFor(m => m.Book.ReleaseYear, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(m => m.Book.ReleaseYear, "", new { @class = "text-danger" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Book.Image)</td>
+                    <td>@Html.TextBoxFor(m => m.Book.Image, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(m => m.Book.Image, "", new { @class = "text-danger" })</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="addBook" value="confirm" class="btn btn-default" /></td>
+                </tr>
+            </table>
+            }
+            </div>
+
+
+
+    </div>
+
+
+

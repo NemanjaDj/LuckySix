@@ -1,0 +1,63 @@
+﻿@model Library.Models.BookModel
+@{
+    ViewData["Title"] = "BookTemplate";
+}
+
+<div class="container">
+    <div class="bookInfo">
+        <h2 id="bookName">@Model.Book.BookName</h2>
+        <table>
+            <tr>
+
+
+                <td>
+                    <div id="bookPicture">
+                        <img src="@Model.Book.Image" />
+                    </div>
+                </td>
+                <td>
+                    @Model.Book.Description
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong id="bookPrize">Book price @Model.Book.BookPrice $</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @foreach (var genre in Model.Genres)
+                    {
+
+                        <text>@genre.GenreName </text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Number of books in stock: @Model.NumberOfBooks </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Number of pages: @Model.Book.PageNumber </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Book release year @Model.Book.ReleaseYear </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Writer @Model.Writer.WriterName </p>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+
+
+
+</div>

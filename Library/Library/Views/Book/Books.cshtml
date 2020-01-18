@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Library.Models.Book>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h2>Books</h2>
+
+
+
+<div class="list-group">
+    <ul style="list-style-type:none" class="list-group">
+        @foreach (var item in Model)
+        {
+            @*<li class="list-group-item list-group-item-action list-group-item-dark">*@
+
+            @Html.ActionLink(@item.BookName, "BookTemplate", "Book", new { id = item.BookId }, new { @class="list-group-item list-group-item-action list-group-item-dark" })
+
+        }
+
+    </ul>
+</div>
+@Html.ActionLink("Add book", "AddBook", new { @class="buttonGrey" })
+
+
+
+
+
+

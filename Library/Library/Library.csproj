@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20200122185357_CustomIdentity.cs" />
+    <Compile Remove="Data\Migrations\20200122185357_CustomIdentity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200123203248_identity2.cs" />
+    <Compile Remove="Data\Migrations\20200123203248_identity2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200123205823_customIdentity.cs" />
+    <Compile Remove="Data\Migrations\20200123205823_customIdentity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200302183331_CustomIdentity.cs" />
+    <Compile Remove="Data\Migrations\20200302183331_CustomIdentity.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
@@ -13,7 +24,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
   </ItemGroup>
 
 </Project>

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Library.Hardcodes
 {
-    abstract public class MasterService
+    abstract public class WriterService
     {
         protected IBookRepository bookRepository;
         protected IWriterRepository writerRepository;
 
-        public MasterService()
+        public WriterService()
         {
             this.bookRepository = new BookRepository(new ApplicationDbContext());
             this.writerRepository = new WriterRepository(new ApplicationDbContext());

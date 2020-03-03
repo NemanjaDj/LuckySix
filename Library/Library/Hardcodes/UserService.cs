@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Library.Hardcodes
 {
-    public class UserService: MasterService
+    public class UserService: WriterService
     {
 
 

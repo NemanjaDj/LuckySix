@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Hardcodes
 {
-    public class BookService: MasterService
+    public class BookService: WriterService
     {
 
         public void InsertBook(Book book, string writerName, IEnumerable<string> genres)

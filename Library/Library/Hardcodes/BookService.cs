@@ -91,6 +91,11 @@ namespace Library.Hardcodes
             return writerRepository.GetWriterById(writerId);
         }
 
+        public void InsertWriter(Writer writer)
+        {
+            writerRepository.InsertWriter(writer);
+        }
+
         public IEnumerable<Writer> GetWriters()
         {
             return writerRepository.GetWriters();

@@ -17,5 +17,7 @@ namespace Library.Repository
 
         Writer GetBookWriter(int bookId);
 
+        void InsertWriter(Writer writer);
+
     }
 }

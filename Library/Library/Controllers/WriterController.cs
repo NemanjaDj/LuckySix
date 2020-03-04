@@ -1,4 +1,6 @@
 ﻿using Library.Hardcodes;
+using Library.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,5 +24,29 @@ namespace Library.Controllers
             return View(writers);
         }
 
+        public IActionResult AddWriter()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddWriter(IFormCollection collection, Writer writer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("AddWriter", writer);
+            }
+
+            try
+            {
+                bookService.InsertWriter(writer);
+                return RedirectToAction("Writers");
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return View();
+        }
     }
 }

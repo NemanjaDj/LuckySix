@@ -35,5 +35,10 @@ namespace Library.Repository
             return applicationDbContext.Books.Where(b => b.BookId == bookId).Select(b => b.Writer).FirstOrDefault();
         }
 
+        public void InsertWriter(Writer writer)
+        {
+            applicationDbContext.Writers.Add(writer);
+            applicationDbContext.SaveChanges();
+        }
     }
 }

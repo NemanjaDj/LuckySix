@@ -40,5 +40,10 @@ namespace Library.Repository
             applicationDbContext.Writers.Add(writer);
             applicationDbContext.SaveChanges();
         }
+
+        public int? GetWriterYearOfBirth(int writerId)
+        {
+            return applicationDbContext.Writers.Where(w => w.WriterId == writerId).Select(w => w.YearOfBirth).FirstOrDefault();
+        }
     }
 }

@@ -19,5 +19,6 @@ namespace Library.Repository
 
         void InsertWriter(Writer writer);
 
+        int? GetWriterYearOfBirth(int writerId);
     }
 }

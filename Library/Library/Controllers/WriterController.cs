@@ -21,6 +21,12 @@ namespace Library.Controllers
         public IActionResult Writers()
         {
             var writers = bookService.GetWriters();
+
+            foreach(var writer in writers)
+            {
+                writer.YearOfBirth = bookService.GetWriterAge(writer.WriterId);
+            }
+
             return View(writers);
         }
 

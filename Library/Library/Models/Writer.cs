@@ -12,7 +12,7 @@ namespace Library.Models
         public int WriterId { get; set; }
         [Required]
         public string WriterName { get; set; }
-        public int? Age { get; set; }
+        public int? YearOfBirth { get; set; }
         public ICollection<Book> Books { get; set; }
     }
 }

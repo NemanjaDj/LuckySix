@@ -124,5 +124,10 @@ namespace Library.Hardcodes
             InsertNumberOfBooks(bookId, _currentNumberOfBooks + numberOfBooks);
         }
 
+        public int? GetWriterAge(int writerId)
+        {
+            var writerAge = DateTime.Now.Year - writerRepository.GetWriterYearOfBirth(writerId);
+            return writerAge;
+        }
     }
 }

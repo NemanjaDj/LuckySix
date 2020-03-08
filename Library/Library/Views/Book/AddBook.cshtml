@@ -12,26 +12,26 @@
             {
             <table id="addBook">
                 <tr>
-                    <td>@Html.LabelFor(m => m.Book.BookName)</td>
+                    <td>Book Name</td>
                     <td>@Html.TextBoxFor(m => m.Book.BookName, new { @class = "form-control" })</td>
                     <td>@Html.ValidationMessageFor(m => m.Book.BookName , "", new { @class = "text-danger" })</td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Book.PageNumber)</td>
+                    <td>Number of page</td>
                     <td>@Html.TextBoxFor(m => m.Book.PageNumber, new { @class = "form-control" })</td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Book.BookPrice)</td>
+                    <td>Book Price</td>
                     <td>@Html.TextBoxFor(m => m.Book.BookPrice, new { @class = "form-control" })</td>
                     <td>@Html.ValidationMessageFor(m => m.Book.BookPrice, "", new { @class = "text-danger" })</td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Book.Description)</td>
+                    <td>Description</td>
                     <td>@Html.TextBoxFor(m => m.Book.Description, new { @class = "form-control" })</td>
                     <td>@Html.ValidationMessageFor(m => m.Book.Description, "", new { @class = "text-danger" })</td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Genres)</td>
+                    <td>Genres</td>
                     <td>
                         <ul name="genres" class="list-group">
                             @foreach (var item in Model.Genres)
@@ -43,7 +43,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Writer)</td>
+                    <td>Writer</td>
                     <td>
                         <select name="writerId" class="form-control">
                             @foreach (var item in Model.Writer)
@@ -55,12 +55,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Book.ReleaseYear)</td>
+                    <td>Release year</td>
                     <td>@Html.TextBoxFor(m => m.Book.ReleaseYear, new { @class = "form-control" })</td>
                     <td>@Html.ValidationMessageFor(m => m.Book.ReleaseYear, "", new { @class = "text-danger" })</td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Book.Image)</td>
+                    <td>Image</td>
                     <td>@Html.TextBoxFor(m => m.Book.Image, new { @class = "form-control" })</td>
                     <td>@Html.ValidationMessageFor(m => m.Book.Image, "", new { @class = "text-danger" })</td>
                 </tr>

@@ -106,21 +106,21 @@ namespace Library.Hardcodes
             return writerRepository.GetBookWriter(bookId);
         }
 
-        public int NumberOfBook(int bookId)
+        public int? NumberOfBook(int bookId)
         {
             return bookRepository.NumberOfBook(bookId);
         }
 
         // insert number of books
-        public void InsertNumberOfBooks(int bookId, int numberOfBooks)
+        public void InsertNumberOfBooks(int bookId, int? numberOfBooks)
         {
             bookRepository.AddNumberOfBooks(bookId, numberOfBooks);
         }
 
         // add additional number of books for bookId
-        public void AddNumberOfBooks(int bookId, int numberOfBooks)
+        public void AddNumberOfBooks(int bookId, int? numberOfBooks)
         {
-            int _currentNumberOfBooks = NumberOfBook(bookId);
+            var _currentNumberOfBooks = NumberOfBook(bookId);
             InsertNumberOfBooks(bookId, _currentNumberOfBooks + numberOfBooks);
         }
 

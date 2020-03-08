@@ -59,7 +59,7 @@ namespace Library.Repository
             return applicationDbContext.BookGenre.Where(bg => bg.BookId == bookId).Select(bg => bg.GenreId).ToList();
         }
 
-        public void AddNumberOfBooks(int bookId, int numberOfBooks)
+        public void AddNumberOfBooks(int bookId, int? numberOfBooks)
         {
             NumberOfBooks bookCounter = new NumberOfBooks();
             bookCounter.BookId = bookId;
@@ -68,9 +68,9 @@ namespace Library.Repository
             applicationDbContext.SaveChanges();
         }
 
-        public int NumberOfBook(int bookId)
+        public int? NumberOfBook(int bookId)
         {
-            return (int)applicationDbContext.NumberOfBooks.SingleOrDefault(nb => nb.BookId == bookId).NumberOfBooksInStore;
+            return applicationDbContext.NumberOfBooks.Where(nb => nb.BookId == bookId).Select(nb => nb.NumberOfBooksInStore).FirstOrDefault();
         }
 
         public List<Genre> GetAllGenres()

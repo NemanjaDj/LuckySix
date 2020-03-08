@@ -13,6 +13,6 @@ namespace Library.Models
 
         public Writer Writer { get; set; }
 
-        public int NumberOfBooks { get; set; }
+        public int? NumberOfBooks { get; set; }
     }
 }

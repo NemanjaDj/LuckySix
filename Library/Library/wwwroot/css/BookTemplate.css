@@ -1,8 +1,8 @@
-﻿body {
-
-}
+﻿
 #bookPicture {
     display: inline-block;
+    height: 30%;
+    width: 30%;
 }
 
 img {
@@ -27,6 +27,14 @@ img {
 }
 
 .addBook {
+    padding: 20px;
+}
+
+.addBook td {
+    padding: 20px;
+}
+
+.addBook tr {
     padding: 20px;
 }
 

@@ -23,8 +23,8 @@ namespace Library.Repository
 
         List<int> GetGenresId(int bookId);
 
-        void AddNumberOfBooks(int bookId, int numberOfBooks);
+        void AddNumberOfBooks(int bookId, int? numberOfBooks);
 
-        int NumberOfBook(int bookId);
+        int? NumberOfBook(int bookId);
     }
 }

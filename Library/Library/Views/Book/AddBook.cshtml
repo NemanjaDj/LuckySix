@@ -22,12 +22,12 @@
                 </tr>
                 <tr>
                     <td>Book Price</td>
-                    <td>@Html.TextBoxFor(m => m.Book.BookPrice, new { @class = "form-control" })</td>
+                    <td>@Html.TextBoxFor(m => m.Book.BookPrice, new { @class = "form-control", @size = "50" })</td>
                     <td>@Html.ValidationMessageFor(m => m.Book.BookPrice, "", new { @class = "text-danger" })</td>
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td>@Html.TextBoxFor(m => m.Book.Description, new { @class = "form-control" })</td>
+                    <td>@Html.TextAreaFor(m => m.Book.Description, new { @class = "form-control", @size = "255"})</td>
                     <td>@Html.ValidationMessageFor(m => m.Book.Description, "", new { @class = "text-danger" })</td>
                 </tr>
                 <tr>

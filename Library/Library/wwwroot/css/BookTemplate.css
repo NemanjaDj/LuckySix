@@ -1,5 +1,4 @@
-﻿
-#bookPicture {
+﻿#bookPicture {
     display: inline-block;
     height: 30%;
     width: 30%;
@@ -26,15 +25,10 @@ img {
     font-size: 20px;
 }
 
-.addBook {
-    padding: 20px;
+#addBook td{
+    padding: 10px;
 }
 
-.addBook td {
-    padding: 20px;
+.list-group {
+    list-style-type: none;
 }
-
-.addBook tr {
-    padding: 20px;
-}
-

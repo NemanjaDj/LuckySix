@@ -13,15 +13,12 @@ namespace Library.Controllers
 {
     public class BookController : Controller
     {
-        //private IBookRepository bookRepository;
         private BookService bookService;
 
         public BookController()
 
         {
             this.bookService = new BookService();
-            // this.bookRepository = new BookRepository(new ApplicationDbContext());
-
         }
 
         public IActionResult Books()
@@ -29,6 +26,25 @@ namespace Library.Controllers
             var books = bookService.ShowBooks();
             return View(books);
         }
+
+        [HttpPost]
+        public IActionResult Books(IFormCollection collection, string name)
+        {
+            if (ModelState.IsValid)
+            {
+                var books = bookService.FindBookByName(name);
+                return View("Books", books);
+            }
+            return View();
+        }
+
+        //[HttpGet("{Book}/{SearchBooks}/{name}")]
+        //public IActionResult SearchBook(string name)
+        //{
+        //    var books = bookService.FindBookByName(name);
+        //    return View("Books", books);
+        //}
+
         public IActionResult AddBook()
         {
             WritersAndGenres writersAndGenres = new WritersAndGenres();

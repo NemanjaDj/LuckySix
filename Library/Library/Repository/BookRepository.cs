@@ -77,5 +77,10 @@ namespace Library.Repository
         {
             return applicationDbContext.Genres.ToList();
         }
+
+        public List<Book> FindBookByName(string bookName)
+        {
+            return applicationDbContext.Books.Where(b => b.BookName.Contains(bookName)).ToList();
+        }
     }
 }

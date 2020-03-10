@@ -26,5 +26,7 @@ namespace Library.Repository
         void AddNumberOfBooks(int bookId, int? numberOfBooks);
 
         int? NumberOfBook(int bookId);
+
+        List<Book> FindBookByName(string bookName);
     }
 }

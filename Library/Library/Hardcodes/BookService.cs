@@ -129,5 +129,11 @@ namespace Library.Hardcodes
             var writerAge = DateTime.Now.Year - writerRepository.GetWriterYearOfBirth(writerId);
             return writerAge;
         }
+
+        public List<Book> FindBookByName(string bookName)
+        {
+            return bookRepository.FindBookByName(bookName);
+        }
+
     }
 }

@@ -5,7 +5,14 @@
 
 <h2>Books</h2>
 
-
+<div>
+    <form asp-controller="Book" asp-action="Books">
+        <p>
+            Title: <input type="text" name="name">
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+</div>
 
 <div class="list-group">
     <ul style="list-style-type:none" class="list-group">

@@ -1,7 +1,12 @@
 ﻿#bookPicture {
     display: inline-block;
-    height: 30%;
-    width: 30%;
+    width: 350px;
+    height:450px;
+}
+
+#bimage {
+    height: 90%;
+    width: 70%;
 }
 
 img {
@@ -25,10 +30,22 @@ img {
     font-size: 20px;
 }
 
-#addBook td{
+#addBook td {
     padding: 10px;
+    vertical-align: top;
 }
 
 .list-group {
     list-style-type: none;
+}
+
+#writerName {
+    font-style: italic;
+    text-align: center;
+    color: dimgrey;
+}
+
+#bookGenres {
+    font-style: italic;
+    color: dimgrey;
 }

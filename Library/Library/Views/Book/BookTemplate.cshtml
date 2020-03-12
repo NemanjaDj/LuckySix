@@ -5,18 +5,31 @@
 
 <div class="container">
     <div class="bookInfo">
-        <h2 id="bookName">@Model.Book.BookName</h2>
+        <h1 id="bookName">@Model.Book.BookName</h1>
+        <h4 id="writerName">@Model.Writer.WriterName</h4>
+        <br />
+        <br />
         <table>
             <tr>
-
-
                 <td>
                     <div id="bookPicture">
-                        <img src="~/images/default.jpg" />
+                        <img src="~/images/default.jpg" id="bimage" />
                     </div>
                 </td>
-                <td>
+                <td style="vertical-align: top;">
+                    <p id="bookGenres">
+                        @foreach (var genre in Model.Genres)
+                        {
+                            <text>@genre.GenreName </text>
+                        }
+                    </p>
+                    <br />
                     @Model.Book.Description
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong id="bookPrize">Details:</strong>
                 </td>
             </tr>
             <tr>
@@ -25,13 +38,6 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    @foreach (var genre in Model.Genres)
-                    {
-
-                        <text>@genre.GenreName </text>
-                    }
-                </td>
             </tr>
             <tr>
                 <td>
@@ -46,11 +52,6 @@
             <tr>
                 <td>
                     <p>Book release year @Model.Book.ReleaseYear </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Writer @Model.Writer.WriterName </p>
                 </td>
             </tr>
 

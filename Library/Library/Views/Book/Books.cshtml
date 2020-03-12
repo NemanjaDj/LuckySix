@@ -8,7 +8,7 @@
 <div>
     <form asp-controller="Book" asp-action="Books">
         <p>
-            Title: <input type="text" name="name">
+            Title: <input type="text" name="name" placeholder="Search title" size="45">
             <input type="submit" value="Filter" />
         </p>
     </form>
@@ -21,7 +21,6 @@
             @*<li class="list-group-item list-group-item-action list-group-item-dark">*@
 
             @Html.ActionLink(@item.BookName, "BookTemplate", "Book", new { id = item.BookId }, new { @class="list-group-item list-group-item-action list-group-item-dark" })
-
         }
 
     </ul>

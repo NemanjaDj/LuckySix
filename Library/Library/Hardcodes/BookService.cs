@@ -152,5 +152,10 @@ namespace Library.Hardcodes
             var doesExists = bookRepository.getBookById(bookId);
             return doesExists == null ? false : true;
         }
+
+        public void UpdateWriter(Writer writer)
+        {
+            writerRepository.UpdateWriter(writer);
+        }
     }
 }

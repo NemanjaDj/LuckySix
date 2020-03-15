@@ -45,5 +45,13 @@ namespace Library.Repository
         {
             return applicationDbContext.Writers.Where(w => w.WriterId == writerId).Select(w => w.YearOfBirth).FirstOrDefault();
         }
+
+        public void UpdateWriter(Writer writer)
+        {
+            var tmpWriter = applicationDbContext.Writers.Where(w => w.WriterId == writer.WriterId).FirstOrDefault();
+            tmpWriter.WriterName = writer.WriterName;
+            tmpWriter.YearOfBirth = writer.YearOfBirth;
+            applicationDbContext.SaveChanges();
+        }
     }
 }

@@ -8,27 +8,29 @@
 
 <h4>Writer</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddWriter">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="WriterName" class="control-label"></label>
-                <input asp-for="WriterName" class="form-control" />
-                <span asp-validation-for="WriterName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="YearOfBirth" class="control-label"></label>
-                <input asp-for="YearOfBirth" class="form-control" />
-                <span asp-validation-for="YearOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+<div class="form-group">
+    @using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.WriterId)
+        <table>
+            <tr>
+                <td>Writer's name</td>
+                <td>@Html.TextBoxFor(m => m.WriterName, new { @class = "form-control", @size = "50" })</td>
+                <td>@Html.ValidationMessageFor(m => m.WriterName, "", new { @class = "text-danger" })</td>
+            </tr>
+            <tr>
+                <td>Year of birth</td>
+                <td>@Html.TextBoxFor(m => m.YearOfBirth, new { @class = "form-control", @size = "50" })</td>
+                <td>@Html.ValidationMessageFor(m => m.YearOfBirth, "", new { @class = "text-danger" })</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Confirm" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    }
 </div>
-
 <div>
     <a asp-action="Writers">Back to List</a>
 </div>

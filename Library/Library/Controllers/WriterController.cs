@@ -45,14 +45,27 @@ namespace Library.Controllers
 
             try
             {
-                bookService.InsertWriter(writer);
+                if(writer.WriterId == 0)
+                {
+                    bookService.InsertWriter(writer);
+                }
+                else
+                {
+                    bookService.UpdateWriter(writer);
+                }                
                 return RedirectToAction("Writers");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
             return View();
+        }
+
+        public IActionResult EditWriter(int id)
+        {
+            var writer = bookService.GetWriterById(id);
+            return View("AddWriter", writer);
         }
     }
 }

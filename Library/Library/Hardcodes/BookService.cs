@@ -55,7 +55,7 @@ namespace Library.Hardcodes
             return bookRepository.getGenreById(genreId);
         }
 
-        public IEnumerable<Genre> BookGenres(int bookId)
+        public ICollection<Genre> BookGenres(int bookId)
         {
             List<Genre> genres = new List<Genre>();
             List<int> genreId = new List<int>();
@@ -135,5 +135,22 @@ namespace Library.Hardcodes
             return bookRepository.FindBookByName(bookName);
         }
 
+        public void UpdateBook(Book book, string writerName, IEnumerable<string> genres)
+        {
+            book.WriterId = GetWriterByName(writerName).WriterId;
+            bookRepository.DeleteBookGenres(book.BookId);
+            foreach (var genre in genres)
+            {
+                var genretmp = bookRepository.getGenreByName(genre);
+                MapBookGenres(book.BookId, genretmp.GenreId);
+            }
+            bookRepository.UpdateBook(book);
+        }
+
+        public bool DoesBookExists(int bookId)
+        {
+            var doesExists = bookRepository.getBookById(bookId);
+            return doesExists == null ? false : true;
+        }
     }
 }

@@ -28,5 +28,9 @@ namespace Library.Repository
         int? NumberOfBook(int bookId);
 
         List<Book> FindBookByName(string bookName);
+
+        void UpdateBook(Book book);
+
+        void DeleteBookGenres(int bookId);
     }
 }

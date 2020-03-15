@@ -8,8 +8,9 @@
 
 
         <div class="form-group">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("AddBook", "Book", FormMethod.Post))
             {
+                @Html.HiddenFor(m => m.Book.BookId)
             <table id="addBook">
                 <tr>
                     <td>Book Name</td>

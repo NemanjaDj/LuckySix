@@ -82,5 +82,25 @@ namespace Library.Repository
         {
             return applicationDbContext.Books.Where(b => b.BookName.Contains(bookName)).ToList();
         }
+
+        public void UpdateBook(Book book)
+        {
+            var tmpBook = applicationDbContext.Books.Where(b => b.BookId == book.BookId).FirstOrDefault();
+            tmpBook.BookName = book.BookName;
+            tmpBook.PageNumber = book.PageNumber;
+            tmpBook.BookPrice = book.BookPrice;
+            tmpBook.Description = book.Description;
+            tmpBook.Image = book.Image;
+            tmpBook.ReleaseYear = book.ReleaseYear;
+            tmpBook.WriterId = book.WriterId;
+            applicationDbContext.SaveChanges();
+        }
+
+        public void DeleteBookGenres(int bookId)
+        {
+            var bookGenres = applicationDbContext.BookGenre.Where(bg => bg.BookId == bookId).ToList();
+            applicationDbContext.BookGenre.RemoveRange(bookGenres);
+            applicationDbContext.SaveChanges();
+        }
     }
 }

@@ -38,12 +38,17 @@ namespace Library.Controllers
             return View();
         }
 
-        //[HttpGet("{Book}/{SearchBooks}/{name}")]
-        //public IActionResult SearchBook(string name)
-        //{
-        //    var books = bookService.FindBookByName(name);
-        //    return View("Books", books);
-        //}
+        public IActionResult EditBook(int bookId)
+        {
+            var book = bookService.getBookById(bookId);
+            var model = new WritersAndGenres
+            {
+                Book = book,
+                Genres = bookService.GetAllGenre(),
+                Writer = bookService.GetWriters()
+            };
+            return View("AddBook", model);
+        }
 
         public IActionResult AddBook()
         {
@@ -71,7 +76,14 @@ namespace Library.Controllers
             {
                 var genreList = collection["bookGenre"];
                 var writerId = collection["writerId"];
-                bookService.InsertBook(book, writerId, genreList);
+                if (bookService.DoesBookExists(book.BookId))
+                {
+                    bookService.UpdateBook(book, writerId, genreList);
+                }
+                else
+                {
+                    bookService.InsertBook(book, writerId, genreList);
+                }
                 return RedirectToAction("Books");
             }
             catch(Exception ex)

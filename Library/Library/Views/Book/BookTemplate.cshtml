@@ -5,8 +5,11 @@
 
 <div class="container">
     <div class="bookInfo">
-        <h1 id="bookName">@Model.Book.BookName</h1>
+        <h1 id="bookName">
+            @Model.Book.BookName
+        </h1>
         <h4 id="writerName">@Model.Writer.WriterName</h4>
+        <h6 style="text-align: center;">@Html.ActionLink("Edit", "EditBook", "Book", new { bookId = @Model.Book.BookId }, new { @class = "glyphicon glyphicon-edit" })</h6>
         <br />
         <br />
         <table>

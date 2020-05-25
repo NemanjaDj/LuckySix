@@ -157,5 +157,10 @@ namespace Library.Hardcodes
         {
             writerRepository.UpdateWriter(writer);
         }
+
+        public void DeleteWriter(int id)
+        {
+            writerRepository.DeleteWriter(GetWriterById(id));
+        }
     }
 }

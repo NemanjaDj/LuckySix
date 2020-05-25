@@ -53,5 +53,11 @@ namespace Library.Repository
             tmpWriter.YearOfBirth = writer.YearOfBirth;
             applicationDbContext.SaveChanges();
         }
+
+        public void DeleteWriter(Writer writer)
+        {
+            applicationDbContext.Remove(writer);
+            applicationDbContext.SaveChanges();
+        }
     }
 }

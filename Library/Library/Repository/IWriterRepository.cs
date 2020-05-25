@@ -22,5 +22,7 @@ namespace Library.Repository
         int? GetWriterYearOfBirth(int writerId);
 
         void UpdateWriter(Writer writer);
+
+        void DeleteWriter(Writer writer);
     }
 }

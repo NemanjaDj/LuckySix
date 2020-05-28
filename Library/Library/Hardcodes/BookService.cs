@@ -162,5 +162,28 @@ namespace Library.Hardcodes
         {
             writerRepository.DeleteWriter(GetWriterById(id));
         }
+
+        public IEnumerable<Book> WriterBooks(int writerId)
+        {
+            return writerRepository.WriterBooks(writerId);
+        }
+
+        public ICollection<Genre> WriterGenres(int writerId)
+        {
+            var books = WriterBooks(writerId);
+            HashSet<Genre> writergenres = new HashSet<Genre>();
+
+            foreach(var book in books)
+            {
+                var genres = BookGenres(book.BookId);
+
+                foreach(var genre in genres)
+                {
+                    writergenres.Add(genre);
+                }
+            }
+
+            return writergenres;
+        }
     }
 }

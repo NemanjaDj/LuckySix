@@ -73,5 +73,14 @@ namespace Library.Controllers
             bookService.DeleteWriter(id);
             return RedirectToAction("Writers");
         }
+
+        public IActionResult WriterDetails(int id)
+        {
+            var writergenres = bookService.WriterGenres(id);
+            var writerBooks = bookService.WriterBooks(id);
+            var writer = bookService.GetWriterById(id);
+            WriterDetails writerDetails = new WriterDetails(writergenres, writerBooks, writer);
+            return View(writerDetails); 
+        }
     }
 }

@@ -24,5 +24,7 @@ namespace Library.Repository
         void UpdateWriter(Writer writer);
 
         void DeleteWriter(Writer writer);
+
+        IEnumerable<Book> WriterBooks(int writerId);
     }
 }

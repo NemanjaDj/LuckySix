@@ -59,5 +59,10 @@ namespace Library.Repository
             applicationDbContext.Remove(writer);
             applicationDbContext.SaveChanges();
         }
+
+        public IEnumerable<Book> WriterBooks(int writerId)
+        {
+            return applicationDbContext.Books.Where(b => b.WriterId == writerId).ToList();
+        }
     }
 }

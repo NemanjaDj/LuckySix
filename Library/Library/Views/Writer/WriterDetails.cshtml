@@ -1,0 +1,56 @@
+﻿@model Library.Models.WriterDetails
+
+@{
+    ViewData["Title"] = "WriterDetails";
+}
+
+    <h2>@Model.Writer.WriterName</h2>
+
+<div>
+    <h4>
+        @foreach (var item in Model.Genres)
+        {
+            <text>@Html.DisplayFor(modelItem => item.GenreName) </text>
+        }
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<div>
+    <a asp-action="Writers">Back to List</a>
+
+    <br />
+    <br />
+
+    <p>Writer books</p>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book name</th>
+                <th>Release year</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Books)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ratings)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

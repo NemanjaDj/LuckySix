@@ -4,6 +4,9 @@
 }
 
 <h2>Books</h2>
+@Html.ActionLink("Add book", "AddBook", new { @class = "buttonGrey" })
+
+<br />
 
 <div>
     <form asp-controller="Book" asp-action="Books">
@@ -20,12 +23,12 @@
         {
             @*<li class="list-group-item list-group-item-action list-group-item-dark">*@
 
-            @Html.ActionLink(@item.BookName, "BookTemplate", "Book", new { id = item.BookId }, new { @class="list-group-item list-group-item-action list-group-item-dark" })
+            @Html.ActionLink(@item.BookName, "BookTemplate", "Book", new { id = item.BookId }, new { @class = "list-group-item list-group-item-action list-group-item-dark" })
         }
 
     </ul>
 </div>
-@Html.ActionLink("Add book", "AddBook", new { @class="buttonGrey" })
+
 
 
 

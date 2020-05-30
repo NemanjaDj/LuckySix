@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Library.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<User, UserRoles, int>
     {
         public ApplicationDbContext()
         {
@@ -72,10 +73,8 @@ namespace Library.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(u => u.UserId);
-                entity.Property(u => u.UserId).ValueGeneratedOnAdd();
-                entity.Property(u => u.UserName).IsRequired().HasMaxLength(50);
+                entity.Property(u => u.UserId).ValueGeneratedNever();
                 entity.Property(u => u.Password).IsRequired().HasMaxLength(50);
-                entity.Property(u => u.Email).IsRequired().HasMaxLength(50);
             });
 
             modelBuilder.Entity<Writer>(entity =>

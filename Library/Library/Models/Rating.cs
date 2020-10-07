@@ -10,12 +10,13 @@ namespace Library.Models
     public class Rating
     {
         [Required]
+        [Key]
         public int RatingId { get; set; }
         [Required]
         public int BookId { get; set; }
         [Required]
         public int UserId { get; set; }
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
         public Book Book { get; set; }
         public int? rate { get; set; }
     }

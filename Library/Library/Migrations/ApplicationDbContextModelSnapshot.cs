@@ -4,22 +4,73 @@ using Library.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Library.Data.Migrations
+namespace Library.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200528193901_CustomIdentity")]
-    partial class CustomIdentity
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Library.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<int?>("Age");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
 
             modelBuilder.Entity("Library.Models.Book", b =>
                 {
@@ -28,8 +79,7 @@ namespace Library.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BookName")
-                        .IsRequired()
-                        .HasMaxLength(80);
+                        .IsRequired();
 
                     b.Property<double>("BookPrice");
 
@@ -79,11 +129,13 @@ namespace Library.Data.Migrations
 
                     b.Property<int>("UserId");
 
+                    b.Property<string>("UserId1");
+
                     b.HasKey("RentId");
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("BookRents");
                 });
@@ -95,8 +147,7 @@ namespace Library.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("GenreName")
-                        .IsRequired()
-                        .HasMaxLength(30);
+                        .IsRequired();
 
                     b.HasKey("GenreId");
 
@@ -131,64 +182,17 @@ namespace Library.Data.Migrations
 
                     b.Property<int>("UserId");
 
+                    b.Property<string>("UserId1");
+
                     b.Property<int?>("rate");
 
                     b.HasKey("RatingId");
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Ratings");
-                });
-
-            modelBuilder.Entity("Library.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<int?>("Age");
-
-                    b.Property<string>("ConcurrencyStamp");
-
-                    b.Property<string>("Email");
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<byte?>("Gender");
-
-                    b.Property<string>("Id");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail");
-
-                    b.Property<string>("NormalizedUserName");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("AppUsers");
                 });
 
             modelBuilder.Entity("Library.Models.Writer", b =>
@@ -207,9 +211,9 @@ namespace Library.Data.Migrations
                     b.ToTable("Writers");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ConcurrencyStamp")
@@ -231,7 +235,7 @@ namespace Library.Data.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -241,7 +245,8 @@ namespace Library.Data.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<Guid>("RoleId");
+                    b.Property<string>("RoleId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -250,58 +255,7 @@ namespace Library.Data.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser<System.Guid>", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -311,7 +265,8 @@ namespace Library.Data.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<Guid>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -320,17 +275,16 @@ namespace Library.Data.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<Guid>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -339,11 +293,11 @@ namespace Library.Data.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.Property<Guid>("UserId");
+                    b.Property<string>("UserId");
 
-                    b.Property<Guid>("RoleId");
+                    b.Property<string>("RoleId");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -352,15 +306,13 @@ namespace Library.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<Guid>("UserId");
+                    b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -396,10 +348,9 @@ namespace Library.Data.Migrations
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Library.Models.User", "User")
+                    b.HasOne("Library.Models.ApplicationUser", "User")
                         .WithMany("BookRents")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Library.Models.NumberOfBooks", b =>
@@ -417,52 +368,51 @@ namespace Library.Data.Migrations
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Library.Models.User", "User")
+                    b.HasOne("Library.Models.ApplicationUser", "User")
                         .WithMany("Ratings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId1");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser<System.Guid>")
+                    b.HasOne("Library.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser<System.Guid>")
+                    b.HasOne("Library.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser<System.Guid>")
+                    b.HasOne("Library.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser<System.Guid>")
+                    b.HasOne("Library.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -21,6 +21,14 @@
     <Compile Remove="Data\Migrations\20200123205823_customIdentity.Designer.cs" />
     <Compile Remove="Data\Migrations\20200302183331_CustomIdentity.cs" />
     <Compile Remove="Data\Migrations\20200302183331_CustomIdentity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530221023_User.cs" />
+    <Compile Remove="Data\Migrations\20200530221023_User.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200530221148_Users.cs" />
+    <Compile Remove="Data\Migrations\20200530221148_Users.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200808121552_changedUser.cs" />
+    <Compile Remove="Data\Migrations\20200808121552_changedUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200930131135_identity.cs" />
+    <Compile Remove="Data\Migrations\20200930131135_identity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +40,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

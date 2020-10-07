@@ -8,11 +8,12 @@ namespace Library.Models
 {
     public class BookRent
     {
+        [Key]
         public int RentId { get; set; }
         public int BookId { get; set; }
         public int UserId { get; set; }
         public Book Book { get; set; }
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DataTo { get; set; }
     }

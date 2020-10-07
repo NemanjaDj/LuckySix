@@ -39,13 +39,17 @@ namespace Library
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, UserRoles>()
+            services.AddIdentityCore<ApplicationUser>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultUI()
-                    .AddDefaultTokenProviders();
+                    .AddDefaultTokenProviders()
+                    .AddSignInManager<SignInManager<ApplicationUser>>();
 
-            //services.AddDefaultIdentity<IdentityUser>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddAuthentication("Identity.Application")
+                .AddCookie("Identity.Application")
+                .AddCookie(IdentityConstants.ExternalScheme)
+                .AddCookie("Identity.TwoFactorUserId")
+                .AddCookie("Identity.TwoFactorRememberMe");
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -66,7 +70,6 @@ namespace Library
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
             app.UseAuthentication();
 

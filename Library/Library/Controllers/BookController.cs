@@ -47,10 +47,40 @@ namespace Library.Controllers
                 Genres = bookService.GetAllGenre(),
                 Writer = bookService.GetWriters()
             };
-            return View("AddBook", model);
+            return View("EditBook", model);
         }
 
-        public IActionResult AddBook()
+        [HttpPost]
+        public ActionResult EditBook(IFormCollection collection, Book book)
+        {
+            if (!ModelState.IsValid)
+            {
+                var model = new WritersAndGenres
+                {
+                    Book = book,
+                    Genres = bookService.GetAllGenre(),
+                    Writer = bookService.GetWriters()
+                };
+                return View("EditBook", model);
+            }
+
+            try
+            {
+                var genreList = collection["bookGenre"];
+                var writerId = collection["writerId"];
+
+                bookService.UpdateBook(book, writerId, genreList);
+
+                return RedirectToAction("Books");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View();
+            }
+        }
+
+            public IActionResult AddBook()
         {
             WritersAndGenres writersAndGenres = new WritersAndGenres();
             writersAndGenres.Genres = bookService.GetAllGenre();
@@ -76,14 +106,9 @@ namespace Library.Controllers
             {
                 var genreList = collection["bookGenre"];
                 var writerId = collection["writerId"];
-                if (bookService.DoesBookExists(book.BookId))
-                {
-                    bookService.UpdateBook(book, writerId, genreList);
-                }
-                else
-                {
-                    bookService.InsertBook(book, writerId, genreList);
-                }
+
+                bookService.InsertBook(book, writerId, genreList);
+
                 return RedirectToAction("Books");
             }
             catch(Exception ex)

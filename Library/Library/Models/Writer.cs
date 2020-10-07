@@ -9,6 +9,7 @@ namespace Library.Models
     public class Writer
     {
         [Required]
+        [Key]
         public int WriterId { get; set; }
         [Required]
         public string WriterName { get; set; }

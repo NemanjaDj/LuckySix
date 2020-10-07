@@ -1,0 +1,88 @@
+﻿@model Library.Models.WritersAndGenres
+
+@{
+    ViewData["Title"] = "EditBook";
+}
+
+<h2>EditBook</h2>
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div>
+        <h2>Insert new book</h2>
+
+
+        <div class="form-group">
+            @using (Html.BeginForm("EditBook", "Book", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.Book.BookId)
+                <table id="addBook">
+                    <tr>
+                        <td>Book Name</td>
+                        <td>@Html.TextBoxFor(m => m.Book.BookName, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(m => m.Book.BookName, "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <td>Number of page</td>
+                        <td>@Html.TextBoxFor(m => m.Book.PageNumber, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>Book Price</td>
+                        <td>@Html.TextBoxFor(m => m.Book.BookPrice, new { @class = "form-control", @size = "50" })</td>
+                        <td>@Html.ValidationMessageFor(m => m.Book.BookPrice, "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>@Html.TextAreaFor(m => m.Book.Description, new { @class = "form-control", @size = "255" })</td>
+                        <td>@Html.ValidationMessageFor(m => m.Book.Description, "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <td>Genres</td>
+                        <td>
+                            <ul name="genres" class="list-group">
+                                @foreach (var item in Model.Genres)
+                                {
+                                    <li>@item.GenreName <input type="checkbox" name="bookGenre" value="@item.GenreName" class="form-check-input" /></li>
+                                }
+
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Writer</td>
+                        <td>
+                            <select name="writerId" class="form-control">
+                                @foreach (var item in Model.Writer)
+                                {
+                                    <option>@item.WriterName</option>
+                                }
+                            </select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Release year</td>
+                        <td>@Html.TextBoxFor(m => m.Book.ReleaseYear, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(m => m.Book.ReleaseYear, "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <td>Image</td>
+                        <td>@Html.TextBoxFor(m => m.Book.Image, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(m => m.Book.Image, "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="addBook" value="confirm" class="btn btn-default" /></td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

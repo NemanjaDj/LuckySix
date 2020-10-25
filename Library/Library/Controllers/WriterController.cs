@@ -45,14 +45,7 @@ namespace Library.Controllers
 
             try
             {
-                if(writer.WriterId == 0)
-                {
-                    bookService.InsertWriter(writer);
-                }
-                else
-                {
-                    bookService.UpdateWriter(writer);
-                }                
+                bookService.InsertWriter(writer);
                 return RedirectToAction("Writers");
             }
             catch (Exception)
@@ -65,8 +58,25 @@ namespace Library.Controllers
         public IActionResult EditWriter(int id)
         {
             var writer = bookService.GetWriterById(id);
-            return View("AddWriter", writer);
+            return View("EditWriter", writer);
         }
+
+        [HttpPost]
+        public IActionResult EditWriter(IFormCollection collection, Writer writer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("EditWriter", writer);
+            }
+
+            if (writer.WriterId != 0)
+            {
+                bookService.UpdateWriter(writer);
+            }
+
+            return RedirectToAction("Writers");
+        }
+
 
         public IActionResult DeleteWriter(int id)
         {

@@ -1,16 +1,17 @@
 ﻿@model Library.Models.Writer
 
 @{
-    ViewData["Title"] = "AddWriter";
+    ViewData["Title"] = "EditWriter";
 }
 
-<h2>AddWriter</h2>
+<h2>Edit Writer</h2>
 
 <h4>Writer</h4>
 <hr />
 <div class="form-group">
-    @using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
+    @using (Html.BeginForm("EditWriter", "Writer", FormMethod.Post))
     {
+        @Html.HiddenFor(m => m.WriterId)
         <table>
             <tr>
                 <td>Writer's name</td>
